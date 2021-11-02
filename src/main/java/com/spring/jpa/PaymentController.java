@@ -19,6 +19,12 @@ public class PaymentController {
 			return paymentview;
 		}
 	    
+	    @RequestMapping("/update-reservation")
+		public ModelAndView printupdateConfirmation() {
+	        ModelAndView paymentview = new ModelAndView("update-reservation");
+			return paymentview;
+		}
+	    
 	    // get data from payment page and transfer to confirmation page
 	    @RequestMapping("/confirmation")
       public ModelAndView confirmation(HttpServletRequest request, HttpServletResponse response) {

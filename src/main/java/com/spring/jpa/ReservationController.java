@@ -29,7 +29,7 @@ public class ReservationController {
    		return "new-reservation";
    	}
 
-       // save new flight reservation
+       // save flight reservation
        @PostMapping( "/save")
    	public @ResponseBody ModelAndView save(
        		@RequestParam("flightcode") int flightcode,
@@ -45,10 +45,34 @@ public class ReservationController {
        {
     	   Reservation reservation=new Reservation(flightcode,airlinename,fare,departuredate,departurecity,arrivaldate,destination,numadult,numchild);
     	   rsvRepository.save(reservation);
+    	   
     	    ModelAndView paymentview = new ModelAndView("payment");
 
            return paymentview;
        }
+       
+       // save flight reservation
+       @PostMapping( "/update-reservation")
+   	public @ResponseBody ModelAndView update(
+       		@RequestParam("flightcode") int flightcode,
+            @RequestParam("airlinename") String airlinename,
+            @RequestParam("fare") String fare,
+			@RequestParam("departuredate") Date departuredate,
+			@RequestParam("departurecity") String departurecity,
+			@RequestParam("arrivaldate") Date arrivaldate,
+			@RequestParam("destination") String destination,
+			@RequestParam("numadult") int numadult,
+			@RequestParam("numchild") int numchild)
+
+       {
+    	   Reservation reservation=new Reservation(flightcode,airlinename,fare,departuredate,departurecity,arrivaldate,destination,numadult,numchild);
+    	   rsvRepository.save(reservation);
+    	   
+    	    ModelAndView confirmationview = new ModelAndView("confirmation");
+
+           return confirmationview;
+       }
+       
        
        // show the list of all reservations
        @RequestMapping("/show-reservation")

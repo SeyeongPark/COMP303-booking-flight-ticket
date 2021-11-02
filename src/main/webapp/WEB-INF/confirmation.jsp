@@ -7,9 +7,9 @@
 <title>Confirmation Page</title>
 </head>
 <body>
-		Thank you for payment
+		Thank you for reservation
 		<p>
-		<button class="button" onclick="location.href='show-reservation'">show reservation</button>
+		<button class="button" onclick="location.href='show-reservation'">show reservations</button>
 		
 </body>
 </html>
