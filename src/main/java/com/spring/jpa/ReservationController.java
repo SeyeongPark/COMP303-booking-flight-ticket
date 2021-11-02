@@ -2,6 +2,9 @@ package com.spring.jpa;
 
 import java.sql.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ReservationController {
@@ -27,7 +31,7 @@ public class ReservationController {
 
        // save new flight reservation
        @PostMapping( "/save")
-   	public @ResponseBody String save(
+   	public @ResponseBody ModelAndView save(
        		@RequestParam("flightcode") int flightcode,
             @RequestParam("airlinename") String airlinename,
             @RequestParam("fare") String fare,
@@ -41,7 +45,9 @@ public class ReservationController {
        {
     	   Reservation reservation=new Reservation(flightcode,airlinename,fare,departuredate,departurecity,arrivaldate,destination,numadult,numchild);
     	   rsvRepository.save(reservation);
-           return "An flight info added";
+    	    ModelAndView paymentview = new ModelAndView("payment");
+
+           return paymentview;
        }
        
        // show the list of all reservations
@@ -51,4 +57,6 @@ public class ReservationController {
            model.addAttribute("reservations", rsvRepository.findAll());
            return "show-reservation";
        }
+       
+       
 }

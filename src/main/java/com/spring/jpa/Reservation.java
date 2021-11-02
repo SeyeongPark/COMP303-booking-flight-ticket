@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//Passenger entity class - Model class
+//Reservation entity class - Model class
 @Entity
 @Table(name = "flight")
 public class Reservation {
